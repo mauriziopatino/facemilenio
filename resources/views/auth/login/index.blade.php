@@ -22,11 +22,11 @@
                     				<p>Please login to your account</p>
 									
                     				<div class="form-outline mb-4">
-                    				    <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}" />
+                    				    <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}" required/>
                     				</div>
 								
                     				<div class="form-outline mb-4">
-                    				    <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+                    				    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required />
                     				</div>
 								
                     				<div class="text-center pt-1 mb-5 pb-1">

@@ -20,18 +20,18 @@
                                 <form method="post" action="{{route('register.store')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-outline mb-4">
-                                        <input type="name" name="name" id="name" class="form-control" placeholder="Name" value="{{old('name')}}"/>
+                                        <input type="name" name="name" id="name" class="form-control" placeholder="Name" value="{{old('name')}}" required/>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="last_name" name="last_name" id="last_name" class="form-control" placeholder="Last Name" value="{{old('last_name')}}" />
+                                        <input type="last_name" name="last_name" id="last_name" class="form-control" placeholder="Last Name" value="{{old('last_name')}}" required/>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <div class="row">
                                             <div class="col-sm">
                                                 <label for="gender_id">Gender</label>
-                                                <select class="form-select" name="gender_id" id="gender_id">
+                                                <select class="form-select" name="gender_id" id="gender_id" required>
                                                     <option value="" selected>Select your gender</option>
                                                     @foreach ($genders as $gender)
                                                         <option value="{{$gender->id}}">{{$gender->name}}</option>
@@ -40,17 +40,17 @@
                                             </div>
                                             <div class="col-sm">
                                                 <label for="birthdate">Birthdate</label>
-                                                <input class="form-control" type="date" name="birthdate" id="birthdate" value="{{old('birthdate')}}">
+                                                <input class="form-control" type="date" name="birthdate" id="birthdate" value="{{old('birthdate')}}" required>
                                             </div>
                                         </div>
                                     </div>
                 
                                     <div class="form-outline mb-4">
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}"/>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}" required/>
                                     </div>
                                 
                                     <div class="form-outline mb-4">
-                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
                                     </div>
                 
                                     <div class="text-center pt-1 mb-5 pb-1">

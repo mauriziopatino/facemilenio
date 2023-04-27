@@ -1,0 +1,22 @@
+.bg-primary-color {
+    background-color: #152b6f;
+}
+
+.bg-secondary-color {
+    background-color: #22b24c;
+}
+
+a.bg-primary-color:hover, input[type="submit"].bg-primary-color:hover{
+    background-color: #1c3fa8;   
+}
+
+a.bg-secondary-color:hover, input[type="submit"].bg-secondary-color:hover{
+    background-color: #19863a;   
+}
+
+@media (min-width: 768px) {
+    .login-form {
+        height: 100vh !important;
+    }
+}
+

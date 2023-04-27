@@ -33,7 +33,7 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'home' => HomeController::class,
-        'users' => UserController::class,
+        'accounts' => UserController::class,
         'comments' => CommentController::class,
         'friends' => FriendController::class,
         'genders' => GenderController::class,

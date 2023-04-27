@@ -5,34 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    @vite('resources/css/app.css')
     <title>Facemilenio - @yield('title')</title>
 </head>
-<body>
+<body id="body-pd">
     @include('sweetalert::alert')
     @section('topbar')
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img class="mb-1 mt-1" src="{{url('/images/facemilenio.png')}}" style="width:120px;" alt="logo">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-      
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Link 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-danger text-white" href="{{url('logout')}}">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div> 
+                    <a href="#" id="nav-toggle" class="nav_logo">
+                        <i class='bx bx-layer nav_logo-icon'></i> 
+                        <img src="{{url('/images/facemilenio.png')}}" class="nav_logo-name" style="width: 120px;">
+                    </a>
+                    <div class="nav_list">
+                        <a href="{{url('/home')}}" class="nav_link active">
+                            <i class='bx bx-grid-alt nav_icon'></i> 
+                            <span class="nav_name">Dashboard</span> 
+                        </a>
+                    </div>
+                    <div class="nav_list">
+                        <a href="{{url('/users')}}" class="nav_link">
+                            <i class='bx bx-user nav_icon'></i> 
+                            <span class="nav_name">Account</span> 
+                        </a>
+                    </div>
+                </div> 
+                <a href="{{url('/logout')}}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span> </a>
+            </nav>
+        </div>
       
     @show
 
@@ -41,6 +44,51 @@
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+   
+            const showNavbar = (toggleId, navId, bodyId) =>{
+                const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId),
+                bodypd = document.getElementById(bodyId);
+                //headerpd = document.getElementById(headerId)
+                console.log(toggle);
+                console.log(nav);
+                console.log(bodypd);
+                //console.log(headerpd);
+            
+                // Validate that all variables exist
+                if(toggle && nav && bodypd){
+                        toggle.addEventListener('click', ()=>{
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        //toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        //headerpd.classList.toggle('body-pd')
+                    })
+                }
+            }
+
+            showNavbar('nav-toggle','nav-bar','body-pd')
+
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
+
+            function colorLink(){
+                if(linkColor){
+                linkColor.forEach(l=> l.classList.remove('active'))
+                this.classList.add('active')
+                }
+            }
+            linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+            // Your code to run since DOM is loaded and ready
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>
