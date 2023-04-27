@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $validator = Validator::make($data, [
             'name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
+            'email' => ['required', 'email'],
             'password' => ['required', Password::min(8)->mixedCase()],
             'gender_id' => 'required',
             'birthdate' => 'required'

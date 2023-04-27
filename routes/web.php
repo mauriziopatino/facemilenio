@@ -2,6 +2,7 @@
 
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GenderController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
+Route::post('/', [LoginController::class, 'login'])->name('login.login');
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
@@ -28,6 +30,7 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
+        'home' => HomeController::class,
         'users' => UserController::class,
         'comments' => CommentController::class,
         'friends' => FriendController::class,

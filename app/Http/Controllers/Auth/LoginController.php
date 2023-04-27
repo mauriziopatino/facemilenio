@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
@@ -15,51 +18,26 @@ class LoginController extends Controller
         return view('auth.login.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function login(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email'],
+            'password' => ['required', Password::min(8)->mixedCase()]
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        if($validator->fails()){
+            return back()
+                ->with('errors', $validator->messages()->all()[0])
+                ->withInput();
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1])) {
+            return redirect('home');
+        }else {
+            return back()
+                ->with('errors', 'User or password incorrect.')
+                ->withInput();
+        }
     }
 }
