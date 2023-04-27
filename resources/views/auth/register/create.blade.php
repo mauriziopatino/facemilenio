@@ -56,6 +56,11 @@
                                     <div class="text-center pt-1 mb-5 pb-1">
                                         <input type="submit" value="Create" class="btn bg-primary-color text-white btn-block fa-lg mb-3 w-100">
                                     </div>
+
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                    				    <p class="mb-0 me-2">Do you have an account?</p>
+                    				    <a href="{{url('/')}}" class="btn btn-outline-success">Log in</a>
+                    				</div>
                 
                                 </form>
                             </div>

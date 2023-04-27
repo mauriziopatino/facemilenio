@@ -22,11 +22,13 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::post('/', [LoginController::class, 'login'])->name('login.login');
-Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::group(['middleware' => 'guest'], function () {
+    Route::post('/', [LoginController::class, 'login'])->name('login.login');
+    Route::get('/', [LoginController::class, 'index'])->name('login');
 
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
@@ -43,4 +45,5 @@ Route::group(['middleware' => 'auth'], function () {
         'roles' => RoleController::class,
         'roles_permissions' => RolesPermissionController::class,
     ]);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

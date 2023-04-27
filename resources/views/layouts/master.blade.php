@@ -8,9 +8,10 @@
     <title>Facemilenio - @yield('title')</title>
 </head>
 <body>
+    @include('sweetalert::alert')
     @section('topbar')
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Logo</a>
+            <img class="mb-1 mt-1" src="{{url('/images/facemilenio.png')}}" style="width:120px;" alt="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,6 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link 3</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white" href="{{url('logout')}}">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -35,5 +39,8 @@
     <div class="container">
         @yield('content')
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    @yield('scripts')
 </body>
 </html>

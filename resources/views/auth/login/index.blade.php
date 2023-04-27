@@ -7,7 +7,7 @@
 	<div class="container py-5 h-100">
     	<div class="row d-flex justify-content-center align-items-center h-100">
           	<div class="col-xl-10">
-            	<div class="card rounded-3 text-black">
+            	<div class="card rounded-start text-black">
               		<div class="row g-0">
                 		<div class="col-lg-6">
                   			<div class="card-body p-md-5 mx-md-4">
@@ -40,7 +40,7 @@
 								</form>
                 			</div>
               			</div>
-              			<div class="col-lg-6 d-flex align-items-center bg-primary-color">
+              			<div class="col-lg-6 d-flex align-items-center bg-primary-color rounded-end">
                 			<div class="text-white px-3 py-4 p-md-5 mx-md-4">
                   				<h4 class="mb-4">Welcome to FaceMilenio family, the social network that connects you with people from all over the world. </h4>
                   				<p class="small mb-0">Facemilenio is more than just a social network, 
@@ -56,3 +56,7 @@
 	</div>
 </section>
 @stop
+
+@section('scripts')
+
+@endsection
