@@ -6,7 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,20 +21,23 @@ use App\Http\Controllers\NotificationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'index'])->name('login');
 
-Route::resources([
-    'users' => UserController::class,
-    'comments' => CommentController::class,
-    'friends' => FriendController::class,
-    'genders' => GenderController::class,
-    'notifications' => NotificationController::class,
-    'notifications_types' => NotificationsTypeController::class,
-    'permissions' => PermissionController::class,
-    'posts' => PostController::class,
-    'reactions' => ReactionController::class,
-    'roles' => RoleController::class,
-    'roles_permissions' => RolesPermissionController::class,
-]);
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resources([
+        'users' => UserController::class,
+        'comments' => CommentController::class,
+        'friends' => FriendController::class,
+        'genders' => GenderController::class,
+        'notifications' => NotificationController::class,
+        'notifications_types' => NotificationsTypeController::class,
+        'permissions' => PermissionController::class,
+        'posts' => PostController::class,
+        'reactions' => ReactionController::class,
+        'roles' => RoleController::class,
+        'roles_permissions' => RolesPermissionController::class,
+    ]);
+});
