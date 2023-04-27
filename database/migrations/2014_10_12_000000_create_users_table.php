@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('gender_id');
             $table->foreignId('role_id');
             $table->string('name');
-            $table->string('lastname');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->date('birthday');
+            $table->date('birthdate');
             $table->string('url_photo')->nullable();
             $table->string('biography')->nullable();
             $table->string('location')->nullable();

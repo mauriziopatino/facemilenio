@@ -9,6 +9,7 @@
     <title>Facemilenio - @yield('title')</title>
 </head>
 <body>
+    @include('sweetalert::alert')
     <div class="container-fluid">
         @yield('content')
     </div>
