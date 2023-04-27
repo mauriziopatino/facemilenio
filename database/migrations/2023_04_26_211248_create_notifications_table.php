@@ -15,10 +15,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('notifications_type_id')->constrained('notification_types');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->dateTime('created_by');
-            $table->dateTime('updated_by');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by');
             $table->timestamps();
         });
     }

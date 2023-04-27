@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts');
             $table->foreignId('reactions_type_id')->constrained('reaction_types');
             $table->boolean('is_active')->default(1);
-            $table->dateTime('created_by');
-            $table->dateTime('updated_by');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by');
             $table->timestamps();
         });
     }

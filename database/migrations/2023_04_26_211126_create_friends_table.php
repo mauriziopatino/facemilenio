@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('user2_id')->constrained('users');
             $table->boolean('status')->default(0);
             $table->boolean('is_active')->default(1);
-            $table->dateTime('created_by');
-            $table->dateTime('updated_by');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by');
             $table->timestamps();
         });
     }
