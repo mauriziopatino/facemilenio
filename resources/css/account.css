@@ -1,0 +1,44 @@
+#profile-picture {
+    width: 150px
+}
+
+.friend-profile-picture, .account-profile-picture {
+    width: 50px;
+}
+
+.account-name {
+    font-size: 1.0625rem;
+    
+}
+
+.account-post-time {
+    font-size: 10px;
+    color: #969696;
+}
+
+.scroll-friends {
+    max-height: 375px;
+    overflow-y: auto;
+}
+
+.scroll-posts {
+    max-height: 761px;
+    overflow: auto;
+}
+
+.post-reactions div {
+    cursor: pointer;
+}
+
+.post-reactions div p{
+    font-size: 12px;
+}
+
+#reaction-angry-icon {
+    color: #fd7e14;
+}
+
+.friend-profile-picture {
+    width: 50px;
+    height: 50px;
+}

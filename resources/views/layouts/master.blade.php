@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    @yield('styles')
     @vite('resources/css/app.css')
     <title>Facemilenio - @yield('title')</title>
 </head>
@@ -16,18 +17,23 @@
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> 
-                    <a href="#" id="nav-toggle" class="nav_logo">
+                    <a id="nav-toggle" class="nav_logo">
                         <i class='bx bx-layer nav_logo-icon'></i> 
                         <img src="{{url('/images/facemilenio.png')}}" class="nav_logo-name" style="width: 120px;">
                     </a>
                     <div class="nav_list">
-                        <a href="{{url('/home')}}" class="nav_link active">
+                        <a class="nav_link">
+                            <div class="header_img">
+                                {{-- TODO: Custom image of profile --}}
+                                <img src="{{url('/images/profile_test.jpeg')}}" alt="">
+                            </div>
+                            <span class="nav_name">Hi, {{auth()->user()->name}}</span> 
+                        </a>
+                        <a href="{{url('/home')}}" class="{{request()->routeIs('home.*') ? 'nav_link active' : 'nav_link'}}">
                             <i class='bx bx-grid-alt nav_icon'></i> 
                             <span class="nav_name">Dashboard</span> 
                         </a>
-                    </div>
-                    <div class="nav_list">
-                        <a href="{{url('/users')}}" class="nav_link">
+                        <a href="{{url('/account' . '/' . Auth::user()->email)}}" class="{{request()->routeIs('account.*') ? 'nav_link active' : 'nav_link'}}">
                             <i class='bx bx-user nav_icon'></i> 
                             <span class="nav_name">Account</span> 
                         </a>
@@ -53,10 +59,6 @@
                 nav = document.getElementById(navId),
                 bodypd = document.getElementById(bodyId);
                 //headerpd = document.getElementById(headerId)
-                console.log(toggle);
-                console.log(nav);
-                console.log(bodypd);
-                //console.log(headerpd);
             
                 // Validate that all variables exist
                 if(toggle && nav && bodypd){
@@ -74,19 +76,6 @@
             }
 
             showNavbar('nav-toggle','nav-bar','body-pd')
-
-            /*===== LINK ACTIVE =====*/
-            const linkColor = document.querySelectorAll('.nav_link')
-
-            function colorLink(){
-                if(linkColor){
-                linkColor.forEach(l=> l.classList.remove('active'))
-                this.classList.add('active')
-                }
-            }
-            linkColor.forEach(l=> l.addEventListener('click', colorLink))
-
-            // Your code to run since DOM is loaded and ready
         });
     </script>
     @yield('scripts')

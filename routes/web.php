@@ -33,7 +33,6 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'home' => HomeController::class,
-        'accounts' => UserController::class,
         'comments' => CommentController::class,
         'friends' => FriendController::class,
         'genders' => GenderController::class,
@@ -45,5 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         'roles' => RoleController::class,
         'roles_permissions' => RolesPermissionController::class,
     ]);
+
+    Route::get('/account/{email}', [UserController::class, 'show'])->name('account.show');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

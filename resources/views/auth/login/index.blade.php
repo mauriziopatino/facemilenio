@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-<section class="h-100 login-form" style="background-color: #eee;">
+<section class="h-100 login-form">
 	<div class="container py-5 h-100">
     	<div class="row d-flex justify-content-center align-items-center h-100">
           	<div class="col-xl-10">
