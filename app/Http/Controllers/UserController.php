@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Friend;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,8 +37,9 @@ class UserController extends Controller
      */
     public function show(string $email)
     {
+        $user = User::where('email', $email)->first();
         return view('users.show')
-            ->with('compact'('email'));
+            ->with(compact('user'));
     }
 
     /**
