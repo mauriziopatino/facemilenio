@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['full_name'];
+
+    public function friends()
+    {
+        return $this->hasMany(Friend::class);
+    }
+
+    protected function getFullNameAttribute()
+    {
+        return $this->name. ' ' . $this->last_name;
+    }
 }

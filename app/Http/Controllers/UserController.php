@@ -38,8 +38,10 @@ class UserController extends Controller
     public function show(string $email)
     {
         $user = User::where('email', $email)->first();
+        $userFriends = Friend::where('user_id', $user->id)->get();
+
         return view('users.show')
-            ->with(compact('user'));
+            ->with(compact('user', 'userFriends'));
     }
 
     /**

@@ -12,4 +12,11 @@ class Friend extends Model
     protected $fillable = [
         'user_id', 'user2_id', 'status', 'is_active'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
