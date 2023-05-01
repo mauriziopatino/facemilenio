@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -20,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -28,7 +33,47 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+        $user = Auth::user();
+
+        $validator = Validator::make($data, [
+            'title' => 'required',
+            'message' => 'max:500',
+            'file' => File::types(['png', 'jpg', 'jpg'])
+        ]);
+
+        if($validator->fails()){
+            return back()
+                ->with('errors', $validator->messages()->all()[0])
+                ->withInput();
+        }
+
+        $post = new Post;
+        $post->user_id = $user->id;
+        $post->title = $data['title'];
+        $post->message = $data['message'];
+        $post->created_by = $user->id;
+        $post->updated_by = $user->id;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $folderPath = public_path() . '/storage' . '/' . $user->email;
+            $fileName = $file->hashName();
+
+            if(!Storage::exists($folderPath)){
+                Storage::makeDirectory($user->email);
+            }
+
+            $path = $request->file('image')->storeAs($folderPath,$fileName);
+            $post->file_url = $path;
+            
+        }
+
+        $post->save();
+        
+        return redirect('/home')
+            ->with('success', 'Post created!');
     }
 
     /**

@@ -58,5 +58,14 @@
             $(this).find('i').addClass('bx bx-angry');
         }
     );
+
+    $('#post-icon').hover(function () {
+            $(this).removeClass('bx bx-plus-circle');
+            $(this).addClass('bx bxs-plus-circle');
+        }, function () {
+            $(this).removeClass('bx bxs-plus-circle');
+            $(this).addClass('bx bx-plus-circle');
+        }
+    );
 </script>
 @endsection

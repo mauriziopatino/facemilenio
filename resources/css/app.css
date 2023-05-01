@@ -158,6 +158,10 @@ a.bg-secondary-color:hover, input[type="submit"].bg-secondary-color:hover{
     background-color: #19863a;   
 }
 
+textarea {
+    resize: none;
+}
+
 /* TODO: SEPARATE CSS */
 /* THIS IS FOR PROFILE PAGE */
 

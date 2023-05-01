@@ -34,6 +34,10 @@
     font-size: 12px;
 }
 
+#post-icon:hover {
+    cursor: pointer;
+}
+
 #reaction-angry-icon {
     color: #fd7e14;
 }
