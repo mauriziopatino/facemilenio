@@ -25,7 +25,7 @@
                         <a class="nav_link">
                             <div class="header_img">
                                 {{-- TODO: Custom image of profile --}}
-                                <img src="{{url('/images/profile_test.jpeg')}}" alt="">
+                                <img src="{{auth()->user->url_photo ?? ('/images/default_profile_picture.jpg')}}" alt="">
                             </div>
                             <span class="nav_name">Hi, {{auth()->user()->name}}</span> 
                         </a>
