@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Reaction;
+use App\Models\ReactionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Storage;
@@ -106,5 +109,32 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function react(Request $request)
+    {
+        $user = Auth::user();
+        $postId = $request->input('postId');
+        $reactionType = $request->input('reactionType');
+        $reactionTypeId = ReactionType::where('name', '=', $reactionType)->first()->id;
+        $reaction = Reaction::where([
+            ['post_id', '=', $postId],
+            ['reactions_type_id', '=', $reactionTypeId]
+        ])->first();
+
+        Log::info($reaction);
+
+        if($reaction == null){
+            $reaction = new Reaction;
+            $reaction->post_id = $postId;
+            $reaction->reactions_type_id = $reactionTypeId;
+            $reaction->created_by = $user->id;
+            $reaction->updated_by = $user->id;
+            $reaction->save();
+        }else {
+            $reaction->delete();
+        }
+
+        return response()->json(['success' => 'Reaction completed']);
     }
 }

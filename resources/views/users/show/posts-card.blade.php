@@ -10,52 +10,138 @@
     <div class="card-body scroll-posts p-4">
         <div class="account-list-posts d-flex justify-content-center flex-column">
             <div class="account-posts">
-                <div class="account-post mb-4 border-bottom border-2 pb-2">
-                    <div class="account-info mb-4 d-flex align-items-center pb-2">
-                        <div class="col-lg-0">
-                            <img src="{{$user->url_photo ?? url('/images/default_profile_picture.jpg')}}" alt="avatar" class="account-profile-picture rounded-circle">
+                @foreach($posts as $post)
+                    <div id="{{$post->id}}" class="account-post mb-4 border-bottom border-2 pb-2">
+                        <div class="account-info mb-4 d-flex align-items-center pb-2">
+                            <div class="col-lg-0">
+                                <img src="{{$post->user->url_photo ?? url('/images/default_profile_picture.jpg')}}" alt="avatar" class="account-profile-picture rounded-circle">
+                            </div>
+                            <div class="col-lg mx-3">
+                                <div class="col-lg">
+                                    <p class="account-name mb-0">{{$post->user->full_name}}</p>
+                                </div>
+                                <div class="col-lg d-flex align-items-center">
+                                    <i class='account-post-time bx bxs-time'></i>
+                                    <p class="account-post-time mb-0 ms-1">{{$post->time_elapsed}}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg mx-3">
-                            <div class="col-lg">
-                                <p class="account-name mb-0">John Smith</p>
+                        <div class="post-info">
+                            <div class="post-text">
+                                <p class="fw-bold">{{$post->title}}</p>
+                                <p>{{$post->message}}</p>
                             </div>
-                            <div class="col-lg d-flex align-items-center">
-                                <i class='account-post-time bx bxs-time'></i>
-                                <p class="account-post-time mb-0 ms-1">3 minutes ago</p>
+                            <div class="post-reactions d-flex align-items-center">
+                                <div class="comment d-flex align-items-center me-3">
+                                    <i class="reaction-comment-icon bx bx-comment me-1 text-info"></i>
+                                    <p class="mb-0">todo</p>
+                                </div>
+                                <div class="like d-flex align-items-center me-3">
+                                    <i class="reaction-like-icon bx bx-like me-1 text-primary"></i>
+                                    <p class="mb-0">{{$post->likes_count}}</p>
+                                </div>
+                                <div class="heart d-flex align-items-center me-3">
+                                    <i class="reaction-heart-icon bx bx-heart me-1 text-danger"></i>
+                                    <p class="mb-0">{{$post->heart_count}}</p>
+                                </div>
+                                <div class="angry d-flex align-items-center me-3">
+                                    <i class="reaction-angry-icon bx bx-angry me-1"></i>
+                                    <p class="mb-0">{{$post->angry_count}}</p>
+                                </div>                                
                             </div>
-                        </div>
-                    </div>
-                    <div class="post-info">
-                        <div class="post-text">
-                            <p class="fw-bold">My review of the new Italian restaurant in town</p>
-                            <p>I recently tried the new Italian restaurant in town and was thoroughly impressed! 
-                                The warm and inviting atmosphere was perfect, and the decor was modern and chic with just the right amount of Italian flair. 
-                                The Caprese salad was fresh and flavorful, and the Linguine alla Vongole was the best I've had in a long time. 
-                                The service was exceptional, and the Tiramisu was the perfect sweet treat to end the meal. 
-                                Highly recommend this cozy spot for a delicious meal!
-                            </p>
-                        </div>
-                        <div class="post-reactions d-flex align-items-center">
-                            <div class="reaction-comment d-flex align-items-center me-3">
-                                <i id="reaction-comment-icon" class="bx bx-comment me-1 text-info"></i>
-                                <p class="mb-0">43</p>
-                            </div>
-                            <div class="reaction-like d-flex align-items-center me-3">
-                                <i id="reaction-like-icon" class="bx bx-like me-1 text-primary"></i>
-                                <p class="mb-0">136</p>
-                            </div>
-                            <div class="reaction-heart d-flex align-items-center me-3">
-                                <i id="reaction-heart-icon" class="bx bx-heart me-1 text-danger"></i>
-                                <p class="mb-0">59</p>
-                            </div>
-                            <div class="reaction-angry d-flex align-items-center me-3">
-                                <i id="reaction-angry-icon" class="bx bx-angry me-1"></i>
-                                <p class="mb-0">13</p>
-                            </div>                                
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.comment').hover(function () {
+                    $(this).find('i')
+                        .removeClass('bx bx-comment')
+                        .addClass('bx bxs-comment');
+                }, function () {
+                    $(this).find('i')
+                        .removeClass('bx bxs-comment')
+                        .addClass('bx bx-comment');
+                }
+            );
+
+            $('.like').hover(function () {
+                    $(this).find('i')
+                        .removeClass('bx bx-like')
+                        .addClass('bx bxs-like');
+                }, function () {
+                    $(this).find('i')
+                        .removeClass('bx bxs-like')
+                        .addClass('bx bx-like');
+                }
+            );
+
+            $('.heart').hover(function () {
+                    $(this).find('i')
+                        .removeClass('bx bx-heart')
+                        .addClass('bx bxs-heart');
+                }, function () {
+                    $(this).find('i')
+                        .removeClass('bx bxs-heart')
+                        .addClass('bx bx-heart');
+                }
+            );
+
+            $('.angry').hover(function () {
+                    $(this).find('i')
+                        .removeClass('bx bx-angry')
+                        .addClass('bx bxs-angry');
+                }, function () {
+                    $(this).find('i')
+                        .removeClass('bx bxs-angry')
+                        .addClass('bx bx-angry');
+                }
+            );
+
+            $('#post-icon').hover(function () {
+                    $(this).removeClass('bx bx-plus-circle')
+                        .addClass('bx bxs-plus-circle');
+                }, function () {
+                    $(this).removeClass('bx bxs-plus-circle')
+                        .addClass('bx bx-plus-circle');
+                }
+            );
+            
+
+            $('.post-reactions div').on('click', function () {
+                var postId = $(this).closest('.account-post').attr('id');
+                var reactionType = $(this).closest('.post-reactions div').attr('class').split(' ')[0];
+                if(reactionType != 'comment') {
+                    console.log(postId);
+                    console.log(reactionType);
+
+                    reactToPost(postId, reactionType);
+                }
+            });
+
+            function reactToPost(postId, reactionType) {
+                $.ajax({
+                    method: 'POST',
+                    url: '{{route("posts.react")}}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        postId:postId,
+                        reactionType:reactionType
+                    },
+                    success: function (data) {
+                        console.log(data.success);
+                    }
+                });
+            }
+        });
+        
+    </script>
+@endsection

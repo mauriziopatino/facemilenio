@@ -4,12 +4,12 @@
     </div>
     <div class="card-body p-4 scroll-friends">
         <div class="friend-list d-flex justify-content-center flex-column">
-            @if ($userFriends->isEmpty())
+            @if ($friends->isEmpty())
                 <div class="friend-info mb-4 d-flex align-items-center border-bottom border-2 pb-2">
                     <p>No friends.</p>
                 </div>
             @else
-                @foreach ($userFriends as $friend)
+                @foreach ($friends as $friend)
                     <div class="friend-info mb-4 d-flex align-items-center border-bottom border-2 pb-2">
                         <img src="{{$friend->user->url_photo ?? url('/images/default_profile_picture.jpg')}}" alt="avatar" class="friend-profile-picture rounded-circle">
                         <p class="friend-name mx-3 mb-0">{{$friend->user->full_name}}</p>

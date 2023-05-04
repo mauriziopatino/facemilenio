@@ -4,13 +4,16 @@ use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\NotificationTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,14 +41,14 @@ Route::group(['middleware' => 'auth'], function () {
         'friends' => FriendController::class,
         'genders' => GenderController::class,
         'notifications' => NotificationController::class,
-        'notifications_types' => NotificationsTypeController::class,
-        'permissions' => PermissionController::class,
+        'notifications_types' => NotificationTypeController::class,
         'posts' => PostController::class,
         'reactions' => ReactionController::class,
         'roles' => RoleController::class,
-        'roles_permissions' => RolesPermissionController::class,
     ]);
 
+    Route::post('/posts/react', [PostController::class, 'react'])->name('posts.react');
     Route::get('/account/{email}', [UserController::class, 'show'])->name('account.show');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 });
