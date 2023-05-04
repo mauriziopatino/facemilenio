@@ -1,0 +1,19 @@
+.account-profile-picture {
+    width: 50px;
+}
+
+.post-reactions div {
+    cursor: pointer;
+}
+
+.post-reactions div p{
+    font-size: 12px;
+}
+
+#post-icon:hover {
+    cursor: pointer;
+}
+
+.reaction-angry-icon {
+    color: #fd7e14;
+}

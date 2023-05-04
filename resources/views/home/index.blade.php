@@ -1,7 +1,11 @@
 @extends('layouts.master')
  
-@section('title', 'Login')
+@section('title', 'Home')
+
+@section('styles')
+@vite('resources/css/home.css')
+@endsection
 
 @section('content')
-<h1>ad</h1>
+    @include('posts.index')
 @stop

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +13,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $posts = Post::withCount(['reactions as likes_count' => function ($query) {
+            $query->where('reactions_type_id', 1);
+        }])
+        ->withCount(['reactions as angry_count' => function ($query) {
+            $query->where('reactions_type_id', 2);
+        }])
+        ->withCount(['reactions as heart_count' => function ($query) {
+            $query->where('reactions_type_id', 3);
+        }])
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+        return view('home.index')
+            ->with(compact('posts'));
     }
 
     /**
