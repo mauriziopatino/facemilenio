@@ -47,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
         'roles' => RoleController::class,
     ]);
 
+    Route::post('/comments/comment/{postId}', [CommentController::class, 'comment'])->name('comments.comment');
     Route::post('/posts/react', [PostController::class, 'react'])->name('posts.react');
+
     Route::get('/account/{email}', [UserController::class, 'show'])->name('account.show');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

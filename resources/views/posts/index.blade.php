@@ -129,6 +129,11 @@
                 }
             });
 
+            $('.comment').on('click', function () {
+                var postId = $(this).closest('.account-post').attr('id');
+                location.href = "{{url('comments/postId')}}".replace("postId", postId);
+            });
+
             function reactToPost(postId, reactionType) {
                 $.ajax({
                     method: 'POST',
