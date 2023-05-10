@@ -48,6 +48,7 @@ class CommentController extends Controller
         ->withCount(['reactions as heart_count' => function ($query) {
             $query->where('reactions_type_id', 3);
         }])
+        ->withCount('comments')
         ->where('id', $postId)
         ->orderBy('created_at', 'DESC')
         ->first();

@@ -52,6 +52,7 @@ class UserController extends Controller
         ->withCount(['reactions as heart_count' => function ($query) {
             $query->where('reactions_type_id', 3);
         }])
+        ->withCount('comments')
         ->where('user_id', $user->id)
         ->get();
 
