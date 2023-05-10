@@ -18,7 +18,7 @@
                             </div>
                             <div class="col-lg mx-3">
                                 <div class="col-lg">
-                                    <p class="account-name mb-0">{{$post->user->full_name}}</p>
+                                    <p class="account-name mb-0"><a href="{{url('/account' . '/' . $post->user->email)}}">{{$post->user->full_name}}</a></p>
                                 </div>
                                 <div class="col-lg d-flex align-items-center">
                                     <i class='account-post-time bx bxs-time'></i>
