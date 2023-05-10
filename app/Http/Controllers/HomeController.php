@@ -22,9 +22,10 @@ class HomeController extends Controller
         ->withCount(['reactions as heart_count' => function ($query) {
             $query->where('reactions_type_id', 3);
         }])
+        ->withCount('comments')
         ->orderBy('created_at', 'DESC')
         ->get();
-
+        
         return view('home.index')
             ->with(compact('posts'));
     }

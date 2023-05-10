@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Reaction;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +28,11 @@ class Post extends Model
     public function reactions()
     {
         return $this->hasMany(Reaction::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     protected function getTimeElapsedAttribute()

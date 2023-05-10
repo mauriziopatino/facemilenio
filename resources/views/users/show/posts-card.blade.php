@@ -34,7 +34,7 @@
                             <div class="post-reactions d-flex align-items-center">
                                 <div class="comment d-flex align-items-center me-3">
                                     <i class="reaction-comment-icon bx bx-comment me-1 text-info"></i>
-                                    <p class="mb-0">todo</p>
+                                    <p class="mb-0">{{$post->comments_count}}</p>
                                 </div>
                                 <div class="like d-flex align-items-center me-3">
                                     <i class="reaction-like-icon bx bx-like me-1 text-primary"></i>
