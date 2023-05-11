@@ -16,7 +16,7 @@
                             <div id="{{$post->id}}" class="account-post mb-4 border-bottom border-2 pb-2">
                                 <div class="account-info mb-4 d-flex align-items-center pb-2">
                                     <div class="col-lg-0">
-                                        <img src="{{$post->user->url_photo ?? url('/images/default_profile_picture.jpg')}}" alt="avatar" class="account-profile-picture rounded-circle">
+                                        <img src="{{$post->user->url_photo ? $post->user->url_photo : url('/images/default_profile_picture.jpg')}}" alt="avatar" class="account-profile-picture rounded-circle">
                                     </div>
                                     <div class="col-lg mx-3">
                                         <div class="col-lg">
