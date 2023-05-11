@@ -46,7 +46,16 @@ class UserController extends Controller
     {
         // TODO: Joins
         $user = User::where('email', $email)->first();
-        $friends = Friend::where('user_id', $user->id)->get();
+
+        /* SQL Query $friends = Friend::where('user_id', $user->id)
+            ->leftJoin('users', 'users.id', '=', 'friends.user2_id')
+            ->get(); 
+        */
+
+        $friends = Friend::where('user_id', $user->id)
+            ->with('user2')
+            ->get();
+            
         $posts = Post::withCount(['reactions as likes_count' => function ($query) {
             $query->where('reactions_type_id', 1);
         }])
