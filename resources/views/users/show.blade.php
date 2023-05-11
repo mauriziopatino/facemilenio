@@ -1,6 +1,6 @@
 @extends('layouts.master')
  
-@section('title', 'Login')
+@section('title', 'Account')
 
 @section('styles')
 @vite('resources/css/account.css')

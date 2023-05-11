@@ -47,10 +47,15 @@ Route::group(['middleware' => 'auth'], function () {
         'roles' => RoleController::class,
     ]);
 
+    Route::controller(UserController::class)->group(function (){
+        Route::get('/account/{email}', 'show')->name('account.show');
+        Route::get('/account/{email}/edit', 'edit')->name('account.edit');
+        Route::put('/account/{email}', 'update')->name('account.update');
+    });
+
     Route::post('/comments/comment/{postId}', [CommentController::class, 'comment'])->name('comments.comment');
     Route::post('/posts/react', [PostController::class, 'react'])->name('posts.react');
 
-    Route::get('/account/{email}', [UserController::class, 'show'])->name('account.show');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 });
